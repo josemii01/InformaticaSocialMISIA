@@ -48,6 +48,29 @@ public class Matriz {
         return matrizResultante; 
     } 
     
+
+    public static Matriz multiplicarDosMatrices(Matriz a, Matriz b) {
+    	int filasA, columnasA, filasB, columnasB;
+    	filasA = a.getDimension().height; 
+        columnasA = a.getDimension().width;
+        filasB = b.getDimension().height; 
+        columnasB = b.getDimension().width;
+        // Comprobar si las matrices se pueden multiplicar
+        if (columnasA != filasB) {
+            throw new IllegalArgumentException("El n�mero de columnas de la primera matriz debe ser igual al n�mero de filas de la segunda matriz.");
+        }
+        Matriz matrizResultante = new Matriz(filasA, columnasB, false);
+        for (int i = 0; i < filasA; i++) {
+            for (int j = 0; j < columnasB; j++) {
+                for (int k = 0; k < columnasA; k++) {
+                	matrizResultante.datos[i][j] += a.datos[i][k] * b.datos[k][j];
+                }
+            }
+        }
+        return matrizResultante;
+    }
+    
+
     public static Matriz traspuesta(Matriz a) {
         int filasA = a.getDimension().height;
         int columnasA = a.getDimension().width;
@@ -59,6 +82,7 @@ public class Matriz {
         }
         return traspuesta;
     }
+
 
     @Override
     public String toString(){
