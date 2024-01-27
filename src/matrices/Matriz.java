@@ -48,6 +48,20 @@ public class Matriz {
         return matrizResultante; 
     } 
     
+
+    public static Matriz traspuesta(Matriz a) {
+        int filasA = a.getDimension().height;
+        int columnasA = a.getDimension().width;
+        Matriz traspuesta = new Matriz(columnasA, filasA, false);
+        for (int i = 0; i < columnasA; i++) {
+            for (int j = 0; j < filasA; j++) {
+                traspuesta.datos[i][j] = a.datos[j][i];
+            }
+        }
+        return traspuesta;
+    }
+
+
     public static Matriz multiplicarDosMatrices(Matriz a, Matriz b) {
     	int filasA, columnasA, filasB, columnasB;
     	filasA = a.getDimension().height; 
@@ -56,7 +70,7 @@ public class Matriz {
         columnasB = b.getDimension().width;
         // Comprobar si las matrices se pueden multiplicar
         if (columnasA != filasB) {
-            throw new IllegalArgumentException("El número de columnas de la primera matriz debe ser igual al número de filas de la segunda matriz.");
+            throw new IllegalArgumentException("El nÃºmero de columnas de la primera matriz debe ser igual al nÃºmero de filas de la segunda matriz.");
         }
         Matriz matrizResultante = new Matriz(filasA, columnasB, false);
         for (int i = 0; i < filasA; i++) {
@@ -69,6 +83,7 @@ public class Matriz {
         return matrizResultante;
     }
     
+
     @Override
     public String toString(){
         String ret = "";
