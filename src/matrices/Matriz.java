@@ -62,7 +62,7 @@ public class Matriz {
     }
 
 
-    public static Matriz multiplicarDosMatrices(Matriz a, Matriz b) {
+    public static Matriz multiplicarDosMatrices(Matriz a, Matriz b) throws DimensionesIncompatibles{
     	int filasA, columnasA, filasB, columnasB;
     	filasA = a.getDimension().height; 
         columnasA = a.getDimension().width;
@@ -70,7 +70,7 @@ public class Matriz {
         columnasB = b.getDimension().width;
         // Comprobar si las matrices se pueden multiplicar
         if (columnasA != filasB) {
-            throw new IllegalArgumentException("El nÃºmero de columnas de la primera matriz debe ser igual al nÃºmero de filas de la segunda matriz.");
+        	throw new DimensionesIncompatibles("El número de columnas de la primera matriz debe ser igual al número de filas de la segunda matriz.");
         }
         Matriz matrizResultante = new Matriz(filasA, columnasB, false);
         for (int i = 0; i < filasA; i++) {
